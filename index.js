@@ -8,20 +8,22 @@ const app = express();
 app.use(bodyParser.json());
 
 const PORT = 5000;
+// const url = `https://api.hatchways.io/assessment/blog/posts?tag=${tag}`;
+
 
 app.use('/posts', postRoutes);
 
-// const url = `https://api.hatchways.io/assessment/blog/posts?tag=tech`;
-// const response = await fetch(url);
-// const postData = await response.json;
-// console.log(postData);
+// const url = `https://api.hatchways.io/assessment/blog/posts?tag=${tag}`;
 
-// app.get('/posts', (req, res) => {
-//     const newPosts = postData.map((post) => {
-//         const { author, tag } = post;
-//         return { author, tag };
-//     })
-//     res.json(newPosts);
+// app.get('/', async (req, res) => {
+//     const url = `https://api.hatchways.io/assessment/blog/posts?tag=tech`;
+//     const response = await fetch(url);
+//     const postData = response.json;
+//     res.json(postData)
+//     console.log(postData);
+
 // })
+
+
 
 app.listen(PORT, () => console.log(`Server is listening on Port: ${PORT}`));
