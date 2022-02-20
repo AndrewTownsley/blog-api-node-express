@@ -3,6 +3,21 @@ specified in the tags parameter.
 \*
 
 
+Checklist
+
+Before submitting your assessment, make sure you have:
+❏ An /api/posts route that handles the following query parameters:
+❏ tags (mandatory) : any number of comma-separated strings
+❏ sortBy (optional) : one of “id”, “reads”, “likes”, “popularity”
+❏ direction (optional) : one of “asc”, “desc”, defaults to “asc”
+❏ Error handling: Return an error message if:
+<!-- ❏ tags parameter is missing -->
+❏ sortBy or direction has an invalid value
+❏ Testing without using our solution API route
+❏ Caching (bonus)
+
+
+
 1.  
 Request:
 Route: /api/ping
