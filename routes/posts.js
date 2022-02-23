@@ -55,59 +55,62 @@ let tagsArray = [
 
 
 // This is the functional GET request.  Uncomment this to make it work.
-// router.get('/', (req, res) => {
-//     const tag = req.query.tag;
-//     // tag.split(',')
-//     // &sortBy=${sortBy}&direction=${direction}
-//     fetch(`https://api.hatchways.io/assessment/blog/posts?tag=${tag}`)
-//     .then(checkResStatus)
-//     .then(res => res.json())
-//     .then(json => res.send(json.posts))
-//     .catch(error => {
-//         res.status(400).send({
-//             error: 'Tags parameter is required'
-//         })
-//         console.log(error);
-//     })
-// })
-
 router.get('/', (req, res) => {
     const tag = req.query.tag;
-    const { sortBy, direction } = req.params;
-    const sortValues = ['id', 'author', 'authorId', 'likes', 'popularity', 'reads', 'tags', undefined];
-    const directionValues = ['asc', 'desc', undefined];
-
-    if(sortValues.indexOf(sortBy) == -1) {
-        res.status(404).send({
-            error: 'sortBy parameter is invalid.'
-        })
-    }
-    if(directionValues.indexOf(direction) === -1) {
-        res.status(404).send({
-            error: 'direction parameter is invalid.'
-        })
-    }
-
-
-    fetch(`https://api.hatchways.io/assessment/blog/posts?tag=${tag}&sortBy=${sortBy}&direction=${direction}`)
+    console.log(req.query.tag)
+    const tagsList = tag.split(',')
+    console.log(tagsList);
+    // tag.split(',')
+    // &sortBy=${sortBy}&direction=${direction}
+    fetch(`https://api.hatchways.io/assessment/blog/posts?tag=${tag}`)
     .then(checkResStatus)
-    .then(res => {
-        let data = res.data.posts;
-        if(sortBy) {
-            if(direction === 'desc') {
-                // sort posts by descending order
-                data = data.sort((a, b) => a.post > b.post ? 1 : -1)
-            } else {
-                // sort posts by ascending order
-                data = data.sort((a, b) => a.post < b.post ? 1 : -1)
-            }
-        }
-        // return success status and posts
-        res.send(200).send(data) 
+    .then(res => res.json())
+    .then(json => res.send(json.posts))
+    .catch(error => {
+        res.status(400).send({
+            error: 'Tags parameter is required'
+        })
+        console.log(error);
     })
-    // catch error and error message
-    
 })
+
+// router.get('/', (req, res) => {
+//     const tag = req.query.tag;
+//     const { sortBy, direction } = req.params;
+//     const sortValues = ['id', 'author', 'authorId', 'likes', 'popularity', 'reads', 'tags', undefined];
+//     const directionValues = ['asc', 'desc', undefined];
+
+//     if(sortValues.indexOf(sortBy) == -1) {
+//         res.status(404).send({
+//             error: 'sortBy parameter is invalid.'
+//         })
+//     }
+//     if(directionValues.indexOf(direction) === -1) {
+//         res.status(404).send({
+//             error: 'direction parameter is invalid.'
+//         })
+//     }
+
+
+//     fetch(`https://api.hatchways.io/assessment/blog/posts?tag=${tag}&sortBy=${sortBy}&direction=${direction}`)
+//     .then(checkResStatus)
+//     .then(res => {
+//         let json = res.json.posts;
+//         if(sortBy) {
+//             if(direction === 'desc') {
+//                 // sort posts by descending order
+//                 json = json.sort((a, b) => a.post > b.post ? 1 : -1)
+//             } else {
+//                 // sort posts by ascending order
+//                 json = json.sort((a, b) => a.post < b.post ? 1 : -1)
+//             }
+//         }
+//         // return success status and posts
+//         res.status(200).send(json.posts) 
+//     })
+//     // catch error and error message
+    
+// })
 
 // router.get('/:tags', async (req, res) => {
 //     const url = `https://api.hatchways.io/assessment/blog/posts?tag=${tag}`;
