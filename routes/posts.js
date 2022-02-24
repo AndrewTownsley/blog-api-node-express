@@ -6,73 +6,55 @@ import { checkResStatus } from '../utils/checkResStatus.js';
 const router = express.Router();
 // const url = `https://api.hatchways.io/assessment/blog/posts?tag=${tag}`;
 
-let tagsArray = [
-    'tech',
-    'politics',
-    'health',
-    'history',
-    'culture',
-    'startups',
-    'science',
-    'design',
-]
-
-
-
+// This is the functional GET request.  Uncomment this to make it work.
 // router.get('/', async (req, res) => {
-
-//     let tagsArray = [
-//         'tech',
-//         'politics',
-//         'health',
-//         'history',
-//         'culture',
-//         'startups',
-//         'science',
-//         'design',
-//     ]
-//     let tags = req.query.tags;
-//     console.log(req.query.tags);
-//     let tagsList = tagsArray.split(',');    
-//     let posts = [];
-
-//     for(let i = 0; i < tagsList.length; i++) {
-//         let tag = tagsList[i];
-//         let url = `https://api.hatchways.io/assessment/blog/posts?tag=${tags}`;
-//         let response = await fetch(url);
-//         let postData = response.json();
-//         posts = posts.concat(postData);
-//     }
-
-//     res.json(posts);
+//     const tag = req.query.tag;
+//     fetch(`https://api.hatchways.io/assessment/blog/posts?tag=${tag}`)
+//         .then(checkResStatus)
+//         .then(res => res.json())
+//         .then(json => res.send(json.posts))
+//         .catch(error => {
+//             res.status(400).send({
+//                 error: 'Tags parameter is required'
+//             })
+//             console.log(error);
+//         })
+ 
 // });
 
-// for each tag in tagsArray, fetch the data from the API and store it in an array,
-// at least one tag must be selected.  multiple tags can be selected. fetch the data based on the tags 
-// selected by the user.
+// router.get('/', (req, res) => {
+//     const tag = req.query.tag;
+//     console.log(req.query.tag)
+//     const tagsList = tag.split(',')
+//     console.log(tagsList);
+    
+//     tagsList.forEach((tag) => {
+//         if(tagsList.length === 0) {
+//             // fetch(url with single tag)
+//             // fetch(`https://api.hatchways.io/assessment/blog/posts?tag=${tag}`)
+//             tag === 'tech' ? 
+//             tag === 'history' ? 
+//             tag === 'health' ? 
+//             tag === 'tech' ? 
 
+//         } else {
+//             // fetch(url with multiple tags seperated by comma)
+//             // fetch(`https://api.hatchways.io/assessment/blog/posts?tag=${tag}`)
 
+//         }
+//     })
 
-
-// This is the functional GET request.  Uncomment this to make it work.
-router.get('/', (req, res) => {
-    const tag = req.query.tag;
-    console.log(req.query.tag)
-    const tagsList = tag.split(',')
-    console.log(tagsList);
-    // tag.split(',')
-    // &sortBy=${sortBy}&direction=${direction}
-    fetch(`https://api.hatchways.io/assessment/blog/posts?tag=${tag}`)
-    .then(checkResStatus)
-    .then(res => res.json())
-    .then(json => res.send(json.posts))
-    .catch(error => {
-        res.status(400).send({
-            error: 'Tags parameter is required'
-        })
-        console.log(error);
-    })
-})
+//     fetch(`https://api.hatchways.io/assessment/blog/posts?tag=${tag}`)
+//     .then(checkResStatus)
+//     .then(res => res.json())
+//     .then(json => res.send(json.posts))
+//     .catch(error => {
+//         res.status(400).send({
+//             error: 'Tags parameter is required'
+//         })
+//         console.log(error);
+//     })
+// })
 
 // router.get('/', (req, res) => {
 //     const tag = req.query.tag;
